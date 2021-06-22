@@ -6,13 +6,16 @@ export default class getVidGetVideoDetailseoDetails extends Component {
         YoutubeURL: '',
         DataArray: [],
         SnippetArray: [],
-        thumbnailsArray: []
+        thumbnailsArray: [],
+        ChannelDataArray: [],
+        ChannelSnippetArray:[],
+        ChannelThumbnailArray:[],
+        ChannelStatisticsArray:[]
     }
     GetAPIData(NewYoutubeURL) {
         axios.get(`http://localhost:5000/api/v1/youtubeapi/getvideostats/${NewYoutubeURL}`)
             //axios.get('http://localhost:5000/')
             .then((response) => {
-                const data = response.data;
                 this.setState({ DataArray: response.data.items[0] });
                 this.setState({ SnippetArray: response.data.items[0].snippet })
                 this.setState({ thumbnailsArray: response.data.items[0].snippet.thumbnails.standard });
@@ -22,6 +25,16 @@ export default class getVidGetVideoDetailseoDetails extends Component {
             .catch((error) => {
                 console.log(error)
             })
+    }
+    GetChannelData(){
+        let ChannelID = this.state.SnippetArray.channelId;
+        axios.get(`http://localhost:5000/api/v1/youtubeapi/getchannelstats/${ChannelID}`)
+        .then((response)=>{
+            this.setState({ChannelDataArray: response.data.items[0]});
+            this.setState({ChannelSnippetArray: response.data.items[0].snippet})
+            this.setState({ChannelThumbnailArray: response.data.items[0].snippet.thumbnails.medium})
+            this.setState({ChannelStatisticsArray: response.data.items[0].statistics})
+        })
     }
     YoutubrURLCheck(){
         if(this.state.YoutubeURL.includes("https://www.youtube.com/watch?v=")){
