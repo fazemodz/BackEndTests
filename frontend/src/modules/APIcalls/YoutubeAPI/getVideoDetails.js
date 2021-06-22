@@ -13,6 +13,7 @@ export default class getVidGetVideoDetailseoDetails extends Component {
         ChannelStatisticsArray:[]
     }
     GetAPIData(NewYoutubeURL) {
+        
         axios.get(`http://localhost:5000/api/v1/youtubeapi/getvideostats/${NewYoutubeURL}`)
             //axios.get('http://localhost:5000/')
             .then((response) => {
@@ -21,6 +22,7 @@ export default class getVidGetVideoDetailseoDetails extends Component {
                 this.setState({ thumbnailsArray: response.data.items[0].snippet.thumbnails.standard });
                 // console.log(response.data.items[0].snippet.thumbnails)
                 console.log('Data has been received!!');
+                this.GetChannelData();
             })
             .catch((error) => {
                 console.log(error)
@@ -35,8 +37,12 @@ export default class getVidGetVideoDetailseoDetails extends Component {
             this.setState({ChannelThumbnailArray: response.data.items[0].snippet.thumbnails.medium})
             this.setState({ChannelStatisticsArray: response.data.items[0].statistics})
         })
+        .catch((error) => {
+            console.log(error)
+        })
     }
     YoutubrURLCheck(){
+        
         if(this.state.YoutubeURL.includes("https://www.youtube.com/watch?v=")){
             let NewYoutubeURL = this.state.YoutubeURL.slice(32);
             this.setState({
@@ -58,6 +64,7 @@ export default class getVidGetVideoDetailseoDetails extends Component {
     onSubmit = e => {
         e.preventDefault();
         this.YoutubrURLCheck();
+        
     }
     RenderData() {
         
@@ -66,7 +73,17 @@ export default class getVidGetVideoDetailseoDetails extends Component {
                 <pre>
                     <p>{this.state.SnippetArray.title}</p>
                     <p>{this.state.SnippetArray.description}</p>
-                    <img src={this.state.thumbnailsArray.url} />
+                    <img src={this.state.thumbnailsArray.url}/>
+                </pre>
+                <pre>
+                    <p>{this.state.ChannelSnippetArray.title}</p>
+                    <p>{this.state.ChannelSnippetArray.description}</p>
+                    <p>{this.state.ChannelSnippetArray.customUrl}</p>
+                    <p>{this.state.ChannelSnippetArray.publishedAt}</p>
+                    <img src={this.state.ChannelThumbnailArray.url}/>
+                    <p>Total View Count: {this.state.ChannelStatisticsArray.viewCount}</p>
+                    <p>Total Subs: {this.state.ChannelStatisticsArray.subscriberCount}</p>
+                    <p>Total video Count: {this.state.ChannelStatisticsArray.videoCount}</p>
                 </pre>
             </div>
         )
@@ -84,7 +101,7 @@ export default class getVidGetVideoDetailseoDetails extends Component {
                     <br /> 
                     <button onClick={e => this.onSubmit(e)}>Submit</button>
                 </form>
-               {this.RenderData()}
+            {this.RenderData()}
             </div>
         )
     }
