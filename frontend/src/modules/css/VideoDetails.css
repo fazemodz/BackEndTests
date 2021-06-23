@@ -1,0 +1,36 @@
+#URLInput{
+    width: 400px;
+    height: 20px;
+    text-align: center;
+    
+}
+
+.InputFormHeader{
+    width:100vw;
+    height:100px;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+#urlSubmitButton{
+    width: 100px;
+}
+.HeaderTopBar{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+#YoutubeURLSearchForm{
+    padding-bottom: 50px;
+    align-content: center;
+    display: flex;
+}

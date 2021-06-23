@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Linkify from 'react-linkify'
+import '../../css/VideoDetails.css'
 //Z3RA7bi5FUM  https://youtu.be/Z3RA7bi5FUM https://youtube.com/Z3RA7bi5FUM 
 export default class getVidGetVideoDetailseoDetails extends Component {
     state = {
@@ -71,15 +72,11 @@ export default class getVidGetVideoDetailseoDetails extends Component {
 
         return (
             <div>
-                <Linkify properties={{target: '_blank',}}>
+                <Linkify properties={{ target: '_blank', }}>
                     <pre>
                         <p>{this.state.SnippetArray.title}</p>
                         <p>{this.state.SnippetArray.description}</p>
                         <img src={this.state.thumbnailsArray.url} />
-                    </pre>
-                    </Linkify>
-                    <Linkify properties={{target: '_blank',}}>
-                    <pre>
                         <p>{this.state.ChannelSnippetArray.title}</p>
                         <p>{this.state.ChannelSnippetArray.description}</p>
                         <p>{this.state.ChannelSnippetArray.customUrl}</p>
@@ -96,16 +93,22 @@ export default class getVidGetVideoDetailseoDetails extends Component {
     render() {
         return (
             <div>
-                <form>
-                    <input
-                        name="YoutubeURL"
-                        placeholder="Add a YouTube URL to search for video details"
-                        value={this.state.YoutubeURL}
-                        onChange={e => this.ChangeHandler(e)}
-                    />
-                    <br />
-                    <button onClick={e => this.onSubmit(e)}>Submit</button>
-                </form>
+
+                <div className="InputFormHeader">
+                    <div className="HeaderTopBar">
+                        <form id="YoutubeURLSearchForm">
+                            <input
+                                id="URLInput"
+                                name="YoutubeURL"
+                                placeholder="Add a YouTube URL to search for video details"
+                                value={this.state.YoutubeURL}
+                                onChange={e => this.ChangeHandler(e)}
+                            />
+                            <br />
+                            <button id="urlSubmitButton" onClick={e => this.onSubmit(e)}>Submit</button>
+                        </form>
+                    </div>
+                </div>
                 {this.RenderData()}
             </div>
         )
