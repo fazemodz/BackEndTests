@@ -12,7 +12,8 @@ export default class getVidGetVideoDetailseoDetails extends Component {
         ChannelDataArray: [],
         ChannelSnippetArray: [],
         ChannelThumbnailArray: [],
-        ChannelStatisticsArray: []
+        ChannelStatisticsArray: [],
+        RenderChannelData: false
     }
     GetAPIData(NewYoutubeURL) {
 
@@ -66,6 +67,7 @@ export default class getVidGetVideoDetailseoDetails extends Component {
     onSubmit = e => {
         e.preventDefault();
         this.YoutubrURLCheck();
+        this.setState({RenderChannelData: true})
 
     }
     RenderData() {
@@ -109,7 +111,11 @@ export default class getVidGetVideoDetailseoDetails extends Component {
                         </form>
                     </div>
                 </div>
-                {this.RenderData()}
+                {this.state.RenderChannelData == false ?(
+                    <div></div>
+                ) :(
+                    this.RenderData()
+                )}
             </div>
         )
     }
