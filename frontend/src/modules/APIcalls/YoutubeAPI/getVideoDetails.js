@@ -53,11 +53,16 @@ export default class getVidGetVideoDetailseoDetails extends Component {
             })
             this.GetAPIData(NewYoutubeURL)
             this.RenderData()
-        } else;
-        if (this.state.YoutubeURL.includes("https://youtu.be/")) {
-            let NewYoutubeURL2 = this.state.YoutubeURL.slice(17)
+        } else if (this.state.YoutubeURL.includes("https://youtu.be/")) {
+            let NewYoutubeURL = this.state.YoutubeURL.slice(17)
+            this.GetAPIData(NewYoutubeURL)
+            this.RenderData()
 
-        } else;
+        } else if (!this.state.YoutubeURL.includes("https://www.youtube.com/watch?v=") || !this.state.YoutubeURL.includes("https://youtu.be/")) {
+            let NewYoutubeURL = this.state.YoutubeURL
+            this.GetAPIData(NewYoutubeURL)
+            this.RenderData()
+        }
     }
     ChangeHandler = e => {
         this.setState({
@@ -67,7 +72,7 @@ export default class getVidGetVideoDetailseoDetails extends Component {
     onSubmit = e => {
         e.preventDefault();
         this.YoutubrURLCheck();
-        this.setState({RenderChannelData: true})
+        this.setState({ RenderChannelData: true })
 
     }
     RenderData() {
@@ -75,19 +80,22 @@ export default class getVidGetVideoDetailseoDetails extends Component {
         return (
             <div>
                 <Linkify properties={{ target: '_blank', }}>
+                    <div class="Video-Title-Container">
+                        <p class="Video-Title">{this.state.SnippetArray.title}</p>
+                    </div>
                     <pre>
-                        <p>{this.state.SnippetArray.title}</p>
                         <p>{this.state.SnippetArray.description}</p>
-                        <img src={this.state.thumbnailsArray.url} />
-                        <p>{this.state.ChannelSnippetArray.title}</p>
-                        <p>{this.state.ChannelSnippetArray.description}</p>
-                        <p>{this.state.ChannelSnippetArray.customUrl}</p>
-                        <p>{this.state.ChannelSnippetArray.publishedAt}</p>
-                        <img src={this.state.ChannelThumbnailArray.url} />
-                        <p>Total View Count: {this.state.ChannelStatisticsArray.viewCount}</p>
-                        <p>Total Subs: {this.state.ChannelStatisticsArray.subscriberCount}</p>
-                        <p>Total video Count: {this.state.ChannelStatisticsArray.videoCount}</p>
                     </pre>
+                    <img src={this.state.thumbnailsArray.url} />
+                    <p>{this.state.ChannelSnippetArray.title}</p>
+                    <p>{this.state.ChannelSnippetArray.description}</p>
+                    <p>{this.state.ChannelSnippetArray.customUrl}</p>
+                    <p>{this.state.ChannelSnippetArray.publishedAt}</p>
+                    <img src={this.state.ChannelThumbnailArray.url} />
+                    <p>Total View Count: {this.state.ChannelStatisticsArray.viewCount}</p>
+                    <p>Total Subs: {this.state.ChannelStatisticsArray.subscriberCount}</p>
+                    <p>Total video Count: {this.state.ChannelStatisticsArray.videoCount}</p>
+
                 </Linkify>
             </div>
         )
@@ -111,9 +119,9 @@ export default class getVidGetVideoDetailseoDetails extends Component {
                         </form>
                     </div>
                 </div>
-                {this.state.RenderChannelData == false ?(
+                {this.state.RenderChannelData == false ? (
                     <div></div>
-                ) :(
+                ) : (
                     this.RenderData()
                 )}
             </div>
