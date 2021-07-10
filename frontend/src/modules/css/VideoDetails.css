@@ -1,3 +1,6 @@
+p{
+    color: hsla(0, 100%, 100%, 0.88);;
+}
 #URLInput{
     width: 400px;
     height: 20px;
@@ -6,11 +9,10 @@
     color: hsla(0, 100%, 100%, 0.88);
     border-color: hsl(0, 0%, 18.82%);
     font-family: 'Roboto','Noto',sans-serif;
-font-size: 16px;
-font-weight: 400;
-line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
 }
-
 .InputFormHeader{
     width:100vw;
     height:100px;
@@ -42,6 +44,8 @@ line-height: 24px;
 }
 .Video-Title{
     padding: 0px;
+    padding-left: 10px;
+    color: white;
 }
 .Video-Title-Container{
     height:40px;
@@ -50,4 +54,34 @@ line-height: 24px;
     display: -webkit-flex;
     display: flex;
     flex-direction: row;
+}
+.Video-Details-Content{
+    width:100vw;
+    height:100vh;
+    float: left;
+    flex-direction: row; 
+    display: flex;
+}
+.Side-Panel-Content{
+    padding-left:10px ;
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color:rgba(33, 33, 33, 0.98);;
+    /* border-color: #696969;
+    border-style: solid;
+    border-top: 0px;
+    border-left: 0px;  */
+}
+.Video-Thumbnail{
+    height: 50%;
+    padding: 10px;
+}
+.Video-Description-Area{
+    padding-left: 15px;
+    width: 50vw;
+}
+.Video-Description-Text{
+    
 }

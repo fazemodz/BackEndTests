@@ -80,21 +80,32 @@ export default class getVidGetVideoDetailseoDetails extends Component {
         return (
             <div>
                 <Linkify properties={{ target: '_blank', }}>
-                    <div class="Video-Title-Container">
-                        <p class="Video-Title">{this.state.SnippetArray.title}</p>
+                    <div className="Video-Details-Content">
+                        <div className="Side-Panel-Content">
+                            <div className="Title-Container">
+                                <p className="Video-Title">{this.state.SnippetArray.title}</p>
+                                <br />
+                                <img className="Video-Thumbnail" src={this.state.thumbnailsArray.url} />
+                            </div>
+                        </div>
+                        <div className="Video-Description-Area">
+                            <pre className="Video-Description-Text">
+                                <p>{this.state.SnippetArray.description}</p>
+                            </pre>
+                            <div className="Channel-Description">
+                                <p>{this.state.ChannelSnippetArray.title}</p>
+                                <p>{this.state.ChannelSnippetArray.description}</p>
+                                <p>{this.state.ChannelSnippetArray.customUrl}</p>
+                                <p>{this.state.ChannelSnippetArray.publishedAt}</p>
+                                <img src={this.state.ChannelThumbnailArray.url} />
+                                <p>Total View Count: {this.state.ChannelStatisticsArray.viewCount}</p>
+                                <p>Total Subs: {this.state.ChannelStatisticsArray.subscriberCount}</p>
+                                <p>Total video Count: {this.state.ChannelStatisticsArray.videoCount}</p>
+                            </div>
+                        </div>
+
                     </div>
-                    <pre>
-                        <p>{this.state.SnippetArray.description}</p>
-                    </pre>
-                    <img src={this.state.thumbnailsArray.url} />
-                    <p>{this.state.ChannelSnippetArray.title}</p>
-                    <p>{this.state.ChannelSnippetArray.description}</p>
-                    <p>{this.state.ChannelSnippetArray.customUrl}</p>
-                    <p>{this.state.ChannelSnippetArray.publishedAt}</p>
-                    <img src={this.state.ChannelThumbnailArray.url} />
-                    <p>Total View Count: {this.state.ChannelStatisticsArray.viewCount}</p>
-                    <p>Total Subs: {this.state.ChannelStatisticsArray.subscriberCount}</p>
-                    <p>Total video Count: {this.state.ChannelStatisticsArray.videoCount}</p>
+
 
                 </Linkify>
             </div>
@@ -119,7 +130,7 @@ export default class getVidGetVideoDetailseoDetails extends Component {
                         </form>
                     </div>
                 </div>
-                {this.state.RenderChannelData == false ? (
+                {this.state.RenderChannelData === false ? (
                     <div></div>
                 ) : (
                     this.RenderData()
